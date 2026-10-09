@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hind_Siliguri, Noto_Color_Emoji } from "next/font/google";
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 
 const hindSiliguri = Hind_Siliguri({
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="bn" data-theme="bazardor" className={`${hindSiliguri.variable} ${notoEmoji.variable}`}>
       <body className="min-h-screen bg-base-200 font-sans text-base-content antialiased">
+        <Navbar />
         {children}
       </body>
     </html>

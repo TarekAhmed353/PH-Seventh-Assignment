@@ -41,3 +41,7 @@
 @theme inline {
   --font-sans: var(--font-hind-siliguri), var(--font-noto-emoji), sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}

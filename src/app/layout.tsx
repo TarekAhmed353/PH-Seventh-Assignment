@@ -28,7 +28,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="bn" data-theme="bazardor" className={`${hindSiliguri.variable} ${notoEmoji.variable}`}>
+    <html
+      lang="bn"
+      data-theme="bazardor"
+      data-scroll-behavior="smooth"
+      className={`${hindSiliguri.variable} ${notoEmoji.variable}`}
+    >
       <body className="min-h-screen bg-base-200 font-sans text-base-content antialiased">
         <Navbar />
         <Ticker />

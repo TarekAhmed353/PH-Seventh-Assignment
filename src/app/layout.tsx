@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Hind_Siliguri } from "next/font/google";
+import { Hind_Siliguri, Noto_Color_Emoji } from "next/font/google";
 import "./globals.css";
 
 const hindSiliguri = Hind_Siliguri({
   variable: "--font-hind-siliguri",
   subsets: ["bengali", "latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+const notoEmoji = Noto_Color_Emoji({
+  variable: "--font-noto-emoji",
+  subsets: ["emoji"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -20,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="bn" data-theme="bazardor" className={hindSiliguri.variable}>
+    <html lang="bn" data-theme="bazardor" className={`${hindSiliguri.variable} ${notoEmoji.variable}`}>
       <body className="min-h-screen bg-base-200 font-sans text-base-content antialiased">
         {children}
       </body>

@@ -39,5 +39,5 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-hind-siliguri), sans-serif;
+  --font-sans: var(--font-hind-siliguri), var(--font-noto-emoji), sans-serif;
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hind_Siliguri, Noto_Color_Emoji } from "next/font/google";
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Ticker from "@/components/Ticker";
 import "./globals.css";
@@ -34,10 +35,11 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${hindSiliguri.variable} ${notoEmoji.variable}`}
     >
-      <body className="min-h-screen bg-base-200 font-sans text-base-content antialiased">
+      <body className="flex min-h-screen flex-col bg-base-200 font-sans text-base-content antialiased">
         <Navbar />
         <Ticker />
-        {children}
+        <div className="flex-1">{children}</div>
+        <Footer />
       </body>
     </html>
   );

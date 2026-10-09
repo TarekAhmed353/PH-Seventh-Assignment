@@ -14,6 +14,12 @@ const unitNames: Record<string, string> = {
   piece: "পিস",
 };
 
+export const changeStyles: Record<ChangeDir, { text: string; badge: string }> = {
+  up: { text: "text-error", badge: "badge-error" },
+  down: { text: "text-success", badge: "badge-success" },
+  flat: { text: "text-base-content/50", badge: "badge-ghost" },
+};
+
 export function toBn(value: number) {
   return bnNumber.format(value);
 }
@@ -39,6 +45,7 @@ export function changeArrow(dir: ChangeDir) {
   if (dir === "down") return "▼";
   return "—";
 }
+
 export function bnDate(date: Date = new Date()) {
   return new Intl.DateTimeFormat("bn-BD", {
     weekday: "long",

@@ -17,7 +17,7 @@ const unitNames: Record<string, string> = {
 export const changeStyles: Record<ChangeDir, { text: string; badge: string }> = {
   up: { text: "text-error", badge: "badge-error" },
   down: { text: "text-success", badge: "badge-success" },
-  flat: { text: "text-base-content/50", badge: "badge-ghost" },
+  flat: { text: "text-base-content/50", badge: "badge-neutral" },
 };
 
 export function toBn(value: number) {

@@ -14,5 +14,6 @@ export const auth = betterAuth({
   database: mongodbAdapter(db, { client }),
   emailAndPassword: {
     enabled: true,
+    autoSignIn: false,
   },
 });

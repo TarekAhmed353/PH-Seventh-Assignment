@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hind_Siliguri, Noto_Color_Emoji } from "next/font/google";
+import AppToaster from "@/components/AppToaster";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Ticker from "@/components/Ticker";
@@ -36,6 +37,7 @@ export default function RootLayout({
       className={`${hindSiliguri.variable} ${notoEmoji.variable}`}
     >
       <body className="flex min-h-screen flex-col bg-base-200 font-sans text-base-content antialiased">
+        <AppToaster />
         <Navbar />
         <Ticker />
         <div className="flex-1">{children}</div>

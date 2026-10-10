@@ -6,7 +6,7 @@ import { changeArrow, changeStyles, formatPercent, toBn, unitName } from "@/lib/
 
 export default function TickerMarquee({ products }: { products: Product[] }) {
   return (
-    <Marquee speed={60} pauseOnHover gradient={false} autoFill>
+    <Marquee speed={80} gradient={false} autoFill>
       {products.map((product) => (
         <span
           key={product.id}

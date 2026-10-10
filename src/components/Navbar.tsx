@@ -1,11 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import { headers } from "next/headers";
 import { getCategories } from "@/lib/api";
+import { auth } from "@/lib/auth";
 import BanglaDate from "./BanglaDate";
 import CategoryLinks from "./CategoryLinks";
+import UserMenu from "./UserMenu";
 
 export default async function Navbar() {
-  const categories = await getCategories();
+  const [categories, session] = await Promise.all([
+    getCategories(),
+    auth.api.getSession({ headers: await headers() }),
+  ]);
 
   return (
     <header className="border-b border-base-300 bg-base-100">
@@ -27,14 +33,18 @@ export default async function Navbar() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-1 sm:gap-2">
-          <Link href="/signin" className="btn btn-ghost btn-sm sm:btn-md">
-            সাইন ইন
-          </Link>
-          <Link href="/signup" className="btn btn-primary btn-sm sm:btn-md">
-            সাইন আপ
-          </Link>
-        </div>
+        {session ? (
+          <UserMenu user={{ name: session.user.name, email: session.user.email, image: session.user.image }} />
+        ) : (
+          <div className="flex items-center gap-1 sm:gap-2">
+            <Link href="/signin" className="btn btn-ghost btn-sm sm:btn-md">
+              সাইন ইন
+            </Link>
+            <Link href="/signup" className="btn btn-primary btn-sm sm:btn-md">
+              সাইন আপ
+            </Link>
+          </div>
+        )}
       </div>
 
       <div className="border-t border-base-300 bg-base-200/50">

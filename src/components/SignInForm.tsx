@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -8,9 +8,18 @@ import { authClient } from "@/lib/auth-client";
 import { authErrorMessage } from "@/lib/auth-messages";
 import SocialButtons from "./SocialButtons";
 
-export default function SignInForm({ redirectTo }: { redirectTo: string }) {
+type Props = {
+  redirectTo: string;
+  notice?: string;
+};
+
+export default function SignInForm({ redirectTo, notice }: Props) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (notice) toast.error(notice, { id: "auth-notice" });
+  }, [notice]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

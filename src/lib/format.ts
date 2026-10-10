@@ -2,6 +2,11 @@ import type { ChangeDir } from "./types";
 
 const bnNumber = new Intl.NumberFormat("bn-BD");
 
+const bnDecimal = new Intl.NumberFormat("bn-BD", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
 const bnPercent = new Intl.NumberFormat("bn-BD", {
   minimumFractionDigits: 1,
   maximumFractionDigits: 1,
@@ -22,6 +27,10 @@ export const changeStyles: Record<ChangeDir, { text: string; badge: string }> = 
 
 export function toBn(value: number) {
   return bnNumber.format(value);
+}
+
+export function formatAmount(value: number) {
+  return Number.isInteger(value) ? bnNumber.format(value) : bnDecimal.format(value);
 }
 
 export function formatPrice(value: number) {

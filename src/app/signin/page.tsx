@@ -7,6 +7,11 @@ import { auth } from "@/lib/auth";
 
 export const metadata: Metadata = { title: "সাইন ইন | বাজার দর" };
 
+const notices: Record<string, string> = {
+  protected: "এই পাতাটি দেখতে আগে সাইন ইন করুন।",
+  "social-error": "Google বা GitHub দিয়ে সাইন ইন করা যায়নি, আবার চেষ্টা করুন।",
+};
+
 type Props = {
   searchParams: Promise<{ redirect?: string; reason?: string }>;
 };
@@ -18,7 +23,7 @@ export default async function SignInPage({ searchParams }: Props) {
   const session = await auth.api.getSession({ headers: await headers() });
   if (session) redirect(redirectTo);
 
-  const notice = reason === "protected" ? "এই পাতাটি দেখতে আগে সাইন ইন করুন।" : undefined;
+  const notice = reason ? notices[reason] : undefined;
 
   return (
     <main className="mx-auto max-w-md px-4 py-10">

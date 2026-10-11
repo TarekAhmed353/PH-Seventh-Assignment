@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Hind_Siliguri, Noto_Color_Emoji } from "next/font/google";
 import AppToaster from "@/components/AppToaster";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import SocialLoginToast from "@/components/SocialLoginToast";
 import Ticker from "@/components/Ticker";
 import "./globals.css";
 
@@ -38,6 +40,9 @@ export default function RootLayout({
     >
       <body className="flex min-h-screen flex-col bg-base-200 font-sans text-base-content antialiased">
         <AppToaster />
+        <Suspense fallback={null}>
+          <SocialLoginToast />
+        </Suspense>
         <Navbar />
         <Ticker />
         <div className="flex-1">{children}</div>

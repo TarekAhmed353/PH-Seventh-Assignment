@@ -7,12 +7,20 @@ import { authErrorMessage } from "@/lib/auth-messages";
 
 type Provider = "google" | "github";
 
+function withLoginFlag(path: string) {
+  return `${path}${path.includes("?") ? "&" : "?"}login=social`;
+}
+
 export default function SocialButtons({ redirectTo = "/" }: { redirectTo?: string }) {
   const [pending, setPending] = useState<Provider | null>(null);
 
   async function handleSocial(provider: Provider) {
     setPending(provider);
-    const { error } = await authClient.signIn.social({ provider, callbackURL: redirectTo });
+    const { error } = await authClient.signIn.social({
+      provider,
+      callbackURL: withLoginFlag(redirectTo),
+      errorCallbackURL: "/signin?reason=social-error",
+    });
     if (error) {
       toast.error(authErrorMessage(error));
       setPending(null);
